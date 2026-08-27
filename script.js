@@ -6,7 +6,7 @@ let recorder;
 let chunks = [];
 startBtn.addEventListener('click',async ()=>{
   toggleDisable();
-  const stream = await navigator.mediaDevices.getDisplayMedia();
+  const stream = stream ? null : await navigator.mediaDevices.getDisplayMedia();
   videoElm.srcObject = stream;
   recorder = new MediaRecorder(stream);
   recorder.start();
