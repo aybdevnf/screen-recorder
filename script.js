@@ -5,7 +5,7 @@ const link = document.querySelector('.download-link');
 startBtn.addEventListener('click',async ()=>{
   let chunks = [];
   toggleDisable();
-  const stream = await navigator.mediaDevices.getDisplayMedia();
+  let stream = await navigator.mediaDevices.getDisplayMedia();
   videoElm.srcObject = stream;
   const recorder = new MediaRecorder(stream);
   recorder.start();
