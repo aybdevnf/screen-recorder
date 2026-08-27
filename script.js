@@ -2,13 +2,12 @@ const videoElm = document.querySelector('.video-elm');
 const startBtn = document.querySelector('.start-btn');
 const stopBtn = document.querySelector('.stop-btn');
 const link = document.querySelector('.download-link');
-let recorder;
-let chunks = [];
 startBtn.addEventListener('click',async ()=>{
+  let chunks = [];
   toggleDisable();
   const stream = await navigator.mediaDevices.getDisplayMedia();
   videoElm.srcObject = stream;
-  recorder = new MediaRecorder(stream);
+  const recorder = new MediaRecorder(stream);
   recorder.start();
   const [video] = recorder.stream.getVideoTracks();
   video.addEventListener('ended',()=>{
@@ -27,7 +26,6 @@ startBtn.addEventListener('click',async ()=>{
     link.download = "video.mp4";
   }
   videoElm.play();
-});
 stopBtn.addEventListener('click',()=>{
   toggleDisable();
   recorder.stop();
@@ -36,6 +34,7 @@ stopBtn.addEventListener('click',()=>{
     stream = null;
   })
 })
+});
 function toggleDisable(){
   if(startBtn.disabled){
     startBtn.disabled = false;
